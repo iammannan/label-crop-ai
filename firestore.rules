@@ -1,0 +1,65 @@
+rules_version = '2';
+
+// Public, anonymous counters for Label Crop AI. Anyone may read the totals and bump them,
+// but only these two documents exist, only known numeric fields may change, and each write
+// may only add a sane amount — so a stray client cannot corrupt or inflate the numbers much.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // The private dashboard at /admin. Add more addresses here to share access.
+    function isOwner() {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.token.email in ["mannarmannan0@gmail.com"];
+    }
+
+    function delta(field) {
+      return request.resource.data.get(field, 0) - (resource != null ? resource.data.get(field, 0) : 0);
+    }
+
+    function bounded(field, max) {
+      return delta(field) >= 0 && delta(field) <= max;
+    }
+
+    function validCounters() {
+      return request.resource.data.v == 1
+        && request.resource.data.keys().hasOnly(['v', 'updatedAt', 'uploads', 'files', 'pages',
+             'labels', 'invoices', 'downloads', 'shares', 'meesho', 'flipkart', 'amazon', 'other'])
+        && bounded('uploads', 10) && bounded('files', 200) && bounded('pages', 20000)
+        && bounded('labels', 20000) && bounded('invoices', 20000) && bounded('downloads', 50) && bounded('shares', 50)
+        && bounded('meesho', 10) && bounded('flipkart', 10) && bounded('amazon', 10) && bounded('other', 10);
+    }
+
+    match /stats/totals {
+      allow read: if true;
+      allow create, update: if validCounters();
+      allow delete: if false;
+    }
+
+    match /stats_daily/{day} {
+      allow read: if true;
+      allow create, update: if validCounters() && day.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$');
+      allow delete: if false;
+    }
+
+    // Business enquiries from the "I want software for my business" form.
+    // Anyone may submit one; only an owner (see isOwner) can read, mark handled
+    // or delete them, through the private dashboard at /admin.
+    match /enquiries/{id} {
+      function text(field, max) {
+        return request.resource.data.get(field, "") is string
+          && request.resource.data.get(field, "").size() <= max;
+      }
+      allow create: if request.resource.data.keys().hasOnly(["name", "email", "phone", "message", "page", "createdAt"])
+        && text("name", 80) && text("email", 120) && text("phone", 25)
+        && text("message", 2000) && text("page", 120)
+        && request.resource.data.get("message", "").size() >= 5
+        && (request.resource.data.get("email", "").size() >= 5 || request.resource.data.get("phone", "").size() >= 7);
+      allow read, update, delete: if isOwner();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
