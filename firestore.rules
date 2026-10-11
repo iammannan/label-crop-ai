@@ -1,8 +1,55 @@
 rules_version = '2';
 
-// Public, anonymous counters for Label Crop AI. Anyone may read the totals and bump them,
-// but only these two documents exist, only known numeric fields may change, and each write
-// may only add a sane amount — so a stray client cannot corrupt or inflate the numbers much.
+// ===============================================================
+// Assumed Data Model & Architecture
+// ===============================================================
+//
+// 1. /stats/totals and /stats_daily/{day}
+//    - Public anonymous usage counters incremented boundedly.
+//
+// 2. /enquiries/{id}
+//    - Public contact enquiries submitted via business lead forms.
+//    - Fields: name, email, phone, message, page, createdAt.
+//    - Read/manage restricted to owner (mannarmannan0@gmail.com).
+//
+// 3. /subscriptions/{deviceId}
+//    - Device-bound active subscription records for Label Crop AI Pro.
+//    - Document ID: deviceId (string)
+//    - Fields:
+//      * deviceId: string (required, matches document ID)
+//      * isPro: bool (required)
+//      * planId: string (optional)
+//      * planTitle: string (optional)
+//      * amount: number (required, > 0 and <= 10000)
+//      * currency: string (optional)
+//      * paymentId: string (required, size >= 5)
+//      * orderId: string (optional)
+//      * customerPhone: string (optional)
+//      * customerEmail: string (optional)
+//      * purchaseTime: number (optional)
+//      * expiryTime: number (required)
+//      * durationDays: number (optional)
+//      * platform: string (optional)
+//      * updatedAt: number or timestamp (optional)
+//    - Read: public (device queries its active subscription status before purchase)
+//    - Create/Update: validated strict schema, deviceId consistency, price bounds
+//    - Delete: owner only
+//
+// 4. /payments/{paymentId}
+//    - Sensitive financial audit ledger of completed Razorpay transactions.
+//    - Document ID: paymentId (string, size >= 5)
+//    - Fields:
+//      * paymentId: string (required, matches document ID, size >= 5)
+//      * amount: number (required, > 0)
+//      * deviceId, planId, currency, orderId, customerPhone, customerEmail,
+//        purchaseTime, expiryTime, status, platform, createdAt (optional)
+//    - Read: owner only (mannarmannan0@gmail.com)
+//    - Create: validated strict schema, immutable ledger
+//    - Update: strictly false (immutable financial ledger)
+//    - Delete: owner only
+//
+// ===============================================================
+
 service cloud.firestore {
   match /databases/{database}/documents {
 
@@ -56,6 +103,31 @@ service cloud.firestore {
         && request.resource.data.get("message", "").size() >= 5
         && (request.resource.data.get("email", "").size() >= 5 || request.resource.data.get("phone", "").size() >= 7);
       allow read, update, delete: if isOwner();
+    }
+
+    // Device subscription status for Pro features (Razorpay).
+    // Devices check active subscription status before purchase.
+    match /subscriptions/{deviceId} {
+      allow read: if true;
+      allow create, update: if request.resource.data.deviceId == deviceId
+        && request.resource.data.keys().hasOnly(['deviceId', 'isPro', 'planId', 'planTitle', 'amount', 'currency', 'paymentId', 'orderId', 'customerPhone', 'customerEmail', 'purchaseTime', 'expiryTime', 'durationDays', 'platform', 'updatedAt'])
+        && request.resource.data.isPro is bool
+        && request.resource.data.amount is number && request.resource.data.amount > 0 && request.resource.data.amount <= 10000
+        && request.resource.data.expiryTime is number
+        && request.resource.data.paymentId is string && request.resource.data.paymentId.size() >= 5;
+      allow delete: if isOwner();
+    }
+
+    // Financial transaction logs for Razorpay payments.
+    // Read and delete restricted to admin owner; writes validated and updates strictly disabled.
+    match /payments/{paymentId} {
+      allow read: if isOwner();
+      allow create: if request.resource.data.paymentId == paymentId
+        && request.resource.data.paymentId.size() >= 5
+        && request.resource.data.amount is number && request.resource.data.amount > 0
+        && request.resource.data.keys().hasOnly(['paymentId', 'deviceId', 'planId', 'amount', 'currency', 'orderId', 'customerPhone', 'customerEmail', 'purchaseTime', 'expiryTime', 'status', 'platform', 'createdAt']);
+      allow update: if false;
+      allow delete: if isOwner();
     }
 
     match /{document=**} {
