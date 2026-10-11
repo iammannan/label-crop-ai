@@ -6,3 +6,16 @@ public/
 .env
 *.key
 *.secret
+
+# Web app and extension source code (proprietary)
+src/
+extension/
+scripts/
+marketing/
+store-assets/
+firebase.json
+.firebaserc
+firestore.rules
+package.json
+package-lock.json
+*.zip
