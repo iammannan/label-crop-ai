@@ -1,0 +1,128 @@
+# LabelCrop AI — Shipping Label Cropper for 4×6 Thermal Printers
+
+⚡ The Ultimate Flipkart Label Crop & Quick Label Crop Tool for E-Commerce Sellers!
+
+Are you an e-commerce seller spending hours cutting PDF shipping labels, removing invoices manually in Adobe Acrobat, or struggling to print on your 4×6 thermal printer? 
+
+LabelCrop AI is the fastest, 100% free, privacy-first Chrome Extension and web tool designed specifically for Indian e-commerce sellers. It automatically detects and crops PDF labels from Flipkart, Meesho, Amazon, and Snapdeal to exact 4×6 thermal roll size (100×150 mm) in seconds.
+
+Say goodbye to wasted paper, expensive cropping subscriptions, and blurry barcodes. With LabelCrop AI, you get instant Flipkart label crop and quick label crop automation directly inside your browser!
+
+---
+
+## 🚀 Why Sellers Need "Flipkart Label Crop" & "Quick Label Crop"
+
+When you download shipping labels from Flipkart Seller Hub (Seller Dashboard) or Meesho Supplier Hub, the platform gives you an A4 page containing both the shipping label and the tax invoice combined on a single sheet. 
+
+If you own a 4×6 thermal label printer (TVS, TSC, Zebra, Gprinter, Xprinter):
+1. The invoice wastes expensive thermal paper rolls.
+2. Manually taking screenshots or cropping each page in Photoshop/Acrobat takes hours during big sales (Big Billion Days, Festive Sales).
+3. Paid desktop software charges monthly subscriptions and slows down your PC.
+4. Cloud-based croppers upload your confidential customer addresses and order details to remote servers.
+
+LabelCrop AI solves every single one of these problems with our automated Flipkart label crop and quick label crop engine!
+
+---
+
+## 🌟 Core Features & Highlights
+
+### 1. Flipkart Label Crop — Perfect 4×6 Thermal Size
+* Auto-detects Flipkart shipping label PDFs in single or bulk batches.
+* Separates the shipping label from the customer invoice automatically.
+* Formats labels to standard 4×6 inch (100×150 mm) thermal roll specifications.
+* Crystal-clear 203 DPI & 300 DPI barcode and QR code preservation for 100% scan pass rates at Ekart Logistics pickup.
+* Handles Flipkart COD (Cash on Delivery), Prepaid, and Ekart labels flawlessly.
+
+### 2. Quick Label Crop — Zero-Lag Processing
+* Drag and drop your batch PDF and get print-ready labels in under 2 seconds.
+* 1-click quick label crop presets for Flipkart, Meesho, Amazon, and Snapdeal.
+* No waiting, no queue, no server processing lag.
+
+### 3. Smart Invoice & Picklist Management
+* Auto-cuts tax invoices and saves them into a separate organized A4 PDF for your accounting records.
+* Generates master SKU Picklists: see total quantities by SKU, product name, and courier before packing.
+* Print SKU details, order dates, and custom notes ("Handle with Care / Fragile") directly on the label margin.
+
+### 4. Courier-Wise Order Sorter
+* Automatically organizes your cropped shipping labels by logistics partner:
+  - Ekart Logistics
+  - Delhivery
+  - Shadowfax
+  - Xpressbees
+  - Ecom Express
+  - Blue Dart
+* Eliminates dispatch confusion during high-volume sales.
+
+### 5. Multi-Marketplace Auto-Detect
+* **Flipkart**: Instant Flipkart label crop and invoice separation.
+* **Meesho**: Crop Meesho A4 PDF labels, remove bottom invoice, 4×6 ready.
+* **Amazon**: Amazon Easy Ship & Self Ship label formatting.
+* **Snapdeal**: Snapdeal shipping label cropping and barcode alignment.
+
+### 6. Compatible with All 4×6 Thermal Label Printers
+Works seamlessly with every major barcode/thermal printer brand in India and globally:
+* TVS Electronics (LP 46 Neo, LP 45, etc.)
+* TSC (TTP-244 Pro, DA220, TE244, etc.)
+* Gprinter (GP-1324D, GP-1424D)
+* Zebra (ZD220, ZD230, GK420d)
+* Xprinter (XP-420B, XP-460B, XP-470B)
+* Every USB, Wi-Fi, and Bluetooth thermal printer.
+
+### 7. Also Supports A4 Sticker Sheets!
+Don't have a thermal printer yet? No problem!
+* Formats labels for standard A4 sticker paper sheets:
+  - A4 1-up, 2-up (half sheet), 4-up, 6-up, and 8-up layouts.
+  - Smart Fit mode (saves up to 75% paper).
+  - Built-in cutting guide lines so you can cut with scissors or paper trimmer quickly.
+
+### 8. 100% In-Browser Privacy (Zero File Uploads)
+Your business data and customer phone numbers/addresses NEVER leave your computer.
+* All PDF processing happens 100% client-side in your browser using modern WebAssembly and JavaScript.
+* Zero files are uploaded to any server or cloud database.
+* Completely safe, confidential, and compliant with privacy standards.
+
+---
+
+## 🛠️ How to Use Quick Label Crop & Flipkart Label Crop (3 Steps)
+
+1. **Launch the Extension**: Click the LabelCrop AI icon in your Chrome toolbar or right-click on your seller dashboard.
+2. **Drop Your Labels**: Drag and drop your downloaded Flipkart or Meesho shipping label PDF into the tool.
+3. **Download & Print**: Click "Download 4×6 PDF" and send directly to your thermal printer!
+
+---
+
+## 📱 Official Android Mobile App
+
+Manage your e-commerce dispatch directly from your smartphone!
+* Download our official Android app: **Label Crop Tool for e-Commerce** on the Google Play Store.
+* Crop shipping labels and print directly to Bluetooth thermal printers in 1 tap from your phone.
+* Search for `ecom.label.crop.tool` on Google Play or click the Google Play badge inside the extension popup.
+
+---
+
+## ❓ Frequently Asked Questions (FAQ)
+
+**Q: How does Flipkart label crop work with this extension?**
+A: When you download your batch dispatch from Flipkart Seller Hub, upload the PDF to LabelCrop AI. Our tool automatically detects the Flipkart layout, trims away the tax invoice section, aligns the shipping barcode and address, and outputs a clean 4×6 inch PDF ready for your thermal printer.
+
+**Q: Is quick label crop free to use?**
+A: Yes! LabelCrop AI is 100% free with no monthly subscription, no hidden charges, and no watermark on your labels.
+
+**Q: Will the Ekart or Delhivery barcodes remain scannable?**
+A: Absolutely. LabelCrop AI maintains original vector fidelity and DPI resolution without compression artifacts, ensuring 100% first-pass scan rates by delivery executives.
+
+**Q: Does my customer data get uploaded to any server?**
+A: Never. All label parsing, cropping, and rendering run locally on your machine inside your Chrome browser. No PDF or customer address is ever transmitted across the internet.
+
+**Q: Can I merge multiple PDF files from different dispatches?**
+A: Yes! Use our Bulk PDF Merge feature to combine dispatches from multiple Flipkart accounts or different marketplaces into one continuous thermal print roll.
+
+---
+
+## 🌐 Official Links & Support
+
+* **Web Tool:** https://labelcropai.web.app
+* **Flipkart Cropper:** https://labelcropai.web.app/flipkart-label-crop
+* **Meesho Cropper:** https://labelcropai.web.app/meesho-label-crop
+* **Android App:** https://play.google.com/store/apps/details?id=ecom.label.crop.tool&hl=en
+* **Privacy Policy:** https://labelcropai.web.app/privacy

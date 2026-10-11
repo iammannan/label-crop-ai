@@ -26,6 +26,7 @@ export const icon = (name, cls = 'i') =>
 const brandMark = `<svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="currentColor"/><path d="M18 14v32h32" fill="none" stroke="#C6F432" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 18h32v32" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity=".92"/><circle cx="32" cy="32" r="5" fill="#C6F432"/></svg>`;
 
 export const GOOGLE_PLAY_URL = 'https://play.google.com/store/apps/details?id=ecom.label.crop.tool&hl=en';
+export const CHROME_EXTENSION_URL = 'https://chromewebstore.google.com/detail/labelcrop-ai-shipping-lab/mmblcneiohcnglkfclhbkgkbeocejcnk';
 
 export const googlePlayIcon = (cls = 'play-logo') => `
 <svg class="${cls}" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
@@ -41,6 +42,23 @@ export const googlePlayBadge = (cls = '') => `
   <span class="play-badge-text">
     <span class="play-sub">GET IT ON</span>
     <span class="play-brand">Google Play</span>
+  </span>
+</a>`;
+
+export const chromeExtensionIcon = (cls = 'chrome-logo') => `
+<svg class="${cls}" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+  <path fill="#4285F4" d="M3.61 2.22c-.22.24-.36.6-.36 1.07v17.42c0 .47.14.83.36 1.07l.06.06 9.77-9.78v-.23L3.67 2.16l-.06.06z"/>
+  <path fill="#FBBC04" d="M16.69 15.3l-3.25-3.24v-.23l3.25-3.24.08.04 3.84 2.18c1.1.62 1.1 1.64 0 2.27l-3.84 2.18-.08.04z"/>
+  <path fill="#EA4335" d="M16.77 15.26L13.44 11.9 3.61 21.73c.36.38.96.43 1.64.04l11.52-6.51z"/>
+  <path fill="#34A853" d="M16.77 8.54L5.25 2.03C4.57 1.64 3.97 1.69 3.61 2.07l9.83 9.83 3.33-3.36z"/>
+</svg>`;
+
+export const chromeExtensionBadge = (cls = '') => `
+<a class="chrome-store-badge${cls ? ' ' + cls : ''}" href="${CHROME_EXTENSION_URL}" target="_blank" rel="noopener" aria-label="Add LabelCrop AI to Chrome">
+  ${chromeExtensionIcon('chrome-logo')}
+  <span class="chrome-badge-text">
+    <span class="chrome-sub">AVAILABLE ON</span>
+    <span class="chrome-brand">Chrome Web Store</span>
   </span>
 </a>`;
 
@@ -154,7 +172,7 @@ function toolMarkup(platform, preset) {
 
     <div class="tool-error" id="tool-error" role="alert" hidden></div>
   </div>
-  <p class="tool-note">${icon('lock', 'i i-sm')} Your PDFs never leave this device. Cropping runs 100% locally. On Android? <a href="${GOOGLE_PLAY_URL}" target="_blank" rel="noopener">Get our free app on Google Play &rarr;</a></p>
+  <p class="tool-note">${icon('lock', 'i i-sm')} Your PDFs never leave this device. Cropping runs 100% locally. <a href="${CHROME_EXTENSION_URL}" target="_blank" rel="noopener">Chrome Extension &rarr;</a> &middot; <a href="${GOOGLE_PLAY_URL}" target="_blank" rel="noopener">Android App on Google Play &rarr;</a></p>
 </section>
 
 <dialog class="crop-dialog" id="crop-dialog" aria-labelledby="crop-title">
@@ -260,6 +278,7 @@ function header(page, ctx) {
   <div class="container header-inner">
     <a class="brand" href="/" aria-label="${esc(ctx.site.name)} home">${brandMark}<span>Label Crop <b>AI</b></span></a>
     <nav class="nav" aria-label="Primary">${nav}<a href="${page.tool ? '#faq' : '/#faq'}">FAQ</a></nav>
+    <a class="header-app header-ext" href="${CHROME_EXTENSION_URL}" target="_blank" rel="noopener" title="Install Chrome Extension">${chromeExtensionIcon('chrome-logo-sm')}<span>Extension</span></a>
     <a class="header-app" href="${GOOGLE_PLAY_URL}" target="_blank" rel="noopener" title="Get Label Crop Tool on Google Play">${googlePlayIcon('play-logo-sm')}<span>Android App</span></a>
     <button type="button" class="btn btn-sm header-enq" data-enq="open">I want software for my business</button>
     <a class="btn btn-dark btn-sm header-cta" href="${page.tool ? '#tool' : '/#tool'}">Crop labels</a>
@@ -276,12 +295,13 @@ function footer(ctx) {
       <a class="brand" href="/">${brandMark}<span>Label Crop <b>AI</b></span></a>
       <p>Free, private shipping-label cropping for Indian e-commerce sellers. Built to run entirely on your device.</p>
       <div class="footer-app">
+        ${chromeExtensionBadge()}
         ${googlePlayBadge()}
       </div>
     </div>
     <div><h3>Tools</h3><ul><li><a href="/">All-in-one label crop</a></li>${tools}</ul></div>
 ${['Printers', 'Workflows', 'Guides'].map(g => { const items = ctx.pages.filter(p => p.group === g); return items.length ? `    <div><h3>${g}</h3><ul>${items.map(p => `<li><a href="${p.path}">${esc(p.crumb)}</a></li>`).join('')}</ul></div>
-` : ''; }).join('')}    <div><h3>Apps &amp; Company</h3><ul><li><a href="${GOOGLE_PLAY_URL}" target="_blank" rel="noopener">Android App (Play Store)</a></li><li><a href="https://iammannan.github.io/flipkart-label-crop/" target="_blank" rel="noopener">Flipkart Label Crop</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/#faq">FAQ</a></li></ul></div>
+` : ''; }).join('')}    <div><h3>Apps &amp; Company</h3><ul><li><a href="${CHROME_EXTENSION_URL}" target="_blank" rel="noopener">Chrome Extension (Web Store)</a></li><li><a href="${GOOGLE_PLAY_URL}" target="_blank" rel="noopener">Android App (Play Store)</a></li><li><a href="https://iammannan.github.io/flipkart-label-crop/" target="_blank" rel="noopener">Flipkart Label Crop</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/#faq">FAQ</a></li></ul></div>
   </div>
   <div class="container footer-legal">
     <p>&copy; ${new Date().getFullYear()} ${esc(ctx.site.name)}. Label Crop AI is an independent tool and is not affiliated with, endorsed by or sponsored by Meesho, Flipkart, Amazon or Snapdeal. All trademarks belong to their respective owners.</p>

@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "LabelCrop AI - Shipping Label Cropper (4x6 Thermal)",
+  "short_name": "LabelCrop AI",
+  "version": "1.0.0",
+  "description": "Free 4x6 thermal shipping label cropper for Meesho, Flipkart & Amazon. Auto-removes invoices with 100% in-browser privacy.",
+  "homepage_url": "https://labelcropai.web.app",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    },
+    "default_title": "Open LabelCrop AI"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "contextMenus"
+  ]
+}

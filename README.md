@@ -1,6 +1,7 @@
 # Label Crop AI — Free Shipping Label Cropper for E-Commerce Sellers
 
 [![Live Tool](https://img.shields.io/badge/Live%20Tool-labelcropai.web.app-7DBE00?style=for-the-badge&logo=googlechrome&logoColor=white)](https://labelcropai.web.app/)
+[![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-Extension-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/labelcrop-ai-shipping-lab/mmblcneiohcnglkfclhbkgkbeocejcnk)
 [![Google Play](https://img.shields.io/badge/Google%20Play-Android%20App-00E676?style=for-the-badge&logo=googleplay&logoColor=white)](https://play.google.com/store/apps/details?id=ecom.label.crop.tool&hl=en)
 [![Privacy](https://img.shields.io/badge/Privacy-100%25%20On--Device%20(No%20Upload)-blue?style=for-the-badge&logo=shield&logoColor=white)](https://labelcropai.web.app/privacy)
 [![License](https://img.shields.io/badge/License-MIT-lightgrey?style=for-the-badge)](LICENSE)
@@ -8,6 +9,7 @@
 > **Free, in-browser shipping-label crop and cutter tool for Indian e-commerce sellers.** Crop Meesho, Flipkart, Shopsy, Amazon India, and Snapdeal shipping label PDFs for 4×6 inch thermal barcode printers and A4 sticker sheets in 1 click. Zero server uploads &mdash; 100% private, on-device vector processing.
 
 👉 **Launch Web App:** [https://labelcropai.web.app](https://labelcropai.web.app)  
+🧩 **Chrome Extension:** [Install from Chrome Web Store](https://chromewebstore.google.com/detail/labelcrop-ai-shipping-lab/mmblcneiohcnglkfclhbkgkbeocejcnk)  
 📱 **Get Android App on Google Play:** [Quick Label Crop: 4x6 Thermal](https://play.google.com/store/apps/details?id=ecom.label.crop.tool&hl=en)
 
 ---
